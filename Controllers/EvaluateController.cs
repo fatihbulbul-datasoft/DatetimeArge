@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
+using System;
 using System.Threading.Tasks;
 
 namespace DatetimeArge.Controllers {
@@ -9,8 +10,11 @@ namespace DatetimeArge.Controllers {
         // POST api/values
         [HttpPost]
         public Task<object> Post([FromBody] string value) {
-            return CSharpScript.EvaluateAsync(value);
+            try {
+                return CSharpScript.EvaluateAsync(value);
+            } catch (Exception ex) {
+                return Task.FromResult((object)ex.Message);
+            }
         }
-
     }
 }

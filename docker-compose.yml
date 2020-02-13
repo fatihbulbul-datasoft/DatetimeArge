@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  datetimearge:
+    image: ${DOCKER_REGISTRY-}datetimearge
+    build:
+      context: .
+      dockerfile: Dockerfile
